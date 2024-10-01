@@ -1,0 +1,7 @@
+# Ignore source files—back those up manually
+*.psd
+*.heic
+
+# Ignore all epubs unless they’re unzipped (i.e. end with “_pkg”)
+*.epub
+!*_pkg.epub

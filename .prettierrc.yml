@@ -1,0 +1,6 @@
+# Prettier auto-formats our code
+# See https://prettier.io/docs/en/options.html for configuration
+
+printWidth: 1000000000 # Prevent HTML text wrapping
+proseWrap: preserve # Waiting on this to work for HTML: https://github.com/prettier/prettier/issues/7595
+singleQuote: true
