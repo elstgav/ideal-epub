@@ -83,13 +83,13 @@
 
     <!-- Supplementary -->
     <item id="css" href="styles/book.css" media-type="text/css" />
-    <item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
-    <!-- DEPRECATED: <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" /> x-->
+    <item id="toc" href="toc.xhtml"       media-type="application/xhtml+xml" properties="nav" />
+    <!-- DEPRECATED: `toc.ncx` x-->
 
     <!-- Fonts -->
     <!-- font/ttf; font/otf; font/woff; font/woff2 x-->
-    <item id="centaur.otf" href="fonts/Centaur.otf" media-type="font/otf" />
-    <item id="centaur-italic.otf" href="fonts/Centaur-italic.otf" media-type="font/otf" />
+    <item id="centaur.otf"            href="fonts/Centaur.otf"            media-type="font/otf" />
+    <item id="centaur-italic.otf"     href="fonts/Centaur-italic.otf"     media-type="font/otf" />
     <item id="din-alternate-bold.ttf" href="fonts/DIN-Alternate-bold.ttf" media-type="font/ttf" />
 
     <!-- Images -->
