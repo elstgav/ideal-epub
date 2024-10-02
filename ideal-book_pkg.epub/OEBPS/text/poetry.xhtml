@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/" xml:lang="en-US">
+  <head>
+    <title>Poetry</title>
+    <link href="../styles/book.css" rel="stylesheet" type="text/css" />
+  </head>
+  <style>
+    /* Poems */
+
+    blockquote[epub|type~='poem'] {
+      hyphens: none;
+      hanging-punctuation: first last;
+    }
+
+    /* HACK: Wrap in h4s to preserve font-family and text-alignment */
+    blockquote[epub|type~='poem'] h4 {
+      all: unset;
+    }
+
+    blockquote[epub|type~='poem'] :is(h4, cite) {
+      font-family: var(--poem-font-family);
+    }
+
+    blockquote[epub|type~='poem'] h4 {
+      display: block;
+      margin-left: calc(5% * var(--indent, 0));
+      text-align: left;
+      text-wrap: balance;
+    }
+
+    blockquote[epub|type~='poem'] .text-center {
+      text-align: center;
+    }
+
+    blockquote[epub|type~='poem'] .text-right {
+      text-align: right;
+      margin-left: 0;
+      margin-right: calc(5% * var(--indent, 0));
+    }
+  </style>
+  <body epub:type="bodymatter z3998:fiction" class="ibooks-dark-theme-use-custom-text-color">
+    <section id="poetry" role="doc-chapter" epub:type="chapter">
+      <blockquote epub:type="z3998:poem">
+        <!--
+        Poetry is tricky to style so that it’s responsive. Here we use text
+        alignment and custom indentation (with --indent), so it can adapt to
+        different screen sizes.
+        -->
+        <!-- HACK:
+        iBooks will override `text-align: left` if text justification is forced
+        in theme settings.
+
+        …but not for heading elements! (and some inline, like <cite>)
+        -->
+        <h4 class="text-left" style="--indent: 0">Torn pages curl and brown. The flames fly up.</h4>
+        <h4 class="text-center" style="--indent: 0">In the flickering light a cry.</h4>
+        <h4 class="text-center" style="--indent: 6">Who will lift the fallen stones?</h4>
+        <h4 class="text-right" style="--indent: 2.1">Who will link the broken chain?</h4>
+        <p>
+          <cite>—From the <em>Korokh Jimah</em>, <nobr>VV. 11383–86</nobr></cite>
+        </p>
+      </blockquote>
+    </section>
+  </body>
+</html>

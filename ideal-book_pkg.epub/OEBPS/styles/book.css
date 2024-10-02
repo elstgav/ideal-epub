@@ -1,0 +1,575 @@
+@charset "utf-8";
+@namespace epub 'http://www.idpf.org/2007/ops';
+
+/*
+
+TIPS
+
+- use the `lh`/`rlh` unit to match line-height
+- use `all-small-caps` for consistent small caps
+- custom `font-family`s will be overriden by iBooks themes
+  …except for certain elements, like headings (which can be abused! 😉).
+
+*/
+
+@font-face {
+  font-family: 'Centaur';
+  font-style: normal;
+  font-weight: normal;
+  src: local(Centaur), url(../fonts/Centaur.otf);
+}
+
+@font-face {
+  font-family: 'Centaur';
+  font-style: italic;
+  font-weight: normal;
+  src: local(Centaur italic), local(Centaur-italic), url(../fonts/Centaur-italic.otf);
+}
+
+@font-face {
+  font-family: 'DIN Alternate';
+  font-style: normal;
+  font-weight: normal;
+  src: local(DIN Alternate Bold), local(DINAlternate-Bold), url(../fonts/DIN-Alternate-bold.ttf);
+}
+
+:root {
+  --serif: Centaur, serif;
+  --sans-serif: DIN Alternate, SF Compact, Helvetica Neue, Helvetica, sans-serif;
+  --theme-color-on-light: hsl(132deg 16% 42%);
+  --theme-color-on-dark: hsl(132deg 20% 44%);
+  --theme-color: var(--theme-color-on-light);
+  --text-indent: 1em;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-color: var(--theme-color-on-dark);
+  }
+
+  strong,
+  em {
+    color: inherit;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Base Typography */
+
+body {
+  margin: 0;
+  padding: 1em;
+
+  font-family: var(--serif);
+  font-feature-settings: 'kern', 'liga', 'clig', 'onum', 'pnum';
+  font-kerning: normal;
+  font-size: 1em;
+  font-variant: common-ligatures oldstyle-nums proportional-nums;
+  line-height: 1.55;
+  text-align: justify;
+  text-wrap: pretty;
+
+  hyphens: auto;
+  -epub-hyphens: auto;
+}
+
+p {
+  clear: left;
+  margin: 0;
+
+  text-indent: var(--text-indent);
+}
+
+:is(h1, h2, h3, hr, blockquote) + p,
+:is(li, blockquote) > p,
+p.first-line-caps,
+section > p:first-of-type {
+  text-indent: 0;
+}
+
+ol {
+  padding-inline-start: 3em;
+}
+
+ol > li {
+  list-style: upper-roman;
+}
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.075em;
+}
+
+strong {
+  font-weight: normal;
+  font-variant: all-small-caps;
+}
+
+/* Page background */
+
+body[epub|type~='frontmatter']:has(> [epub|type*='titlepage'])::before,
+section[epub|type~='titlepage'] > figure::before {
+  content: '';
+
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-clip: border-box;
+  background-image: url('../imagespage-bg.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: opacity(0.5) hue-rotate(-100deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  body[epub|type~='frontmatter']:has(> [epub|type~='halftitlepage'])::before {
+    filter: brightness(0.3);
+    opacity: 0.75;
+  }
+}
+
+/* Headings */
+
+h1,
+h2,
+h3 {
+  break-inside: avoid;
+  break-after: avoid;
+
+  font-feature-settings: 'kern', 'liga', 'clig', 'lnum', 'pnum';
+  font-variant: common-ligatures lining-nums proportional-nums;
+  font-weight: normal;
+  hyphens: auto;
+  -epub-hyphens: auto;
+  line-height: 1;
+  text-align: center;
+  text-wrap: balance;
+}
+
+section:not([epub|type*='titlepage']) h1 {
+  padding-top: 8lh;
+  margin-bottom: 5lh;
+
+  font-size: 1.2rem;
+  font-variant-caps: all-small-caps;
+  font-family: var(--sans-serif);
+  letter-spacing: 0.75ch;
+}
+
+/* Chapter breaks */
+
+hr {
+  display: block;
+
+  break-inside: avoid;
+
+  background-image: url(../imagesseal.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+
+  filter: grayscale(1);
+
+  width: 2.5em;
+  height: 2.5em;
+  margin: 1.5em auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  hr {
+    opacity: 0.85;
+  }
+}
+
+/* Images */
+
+figure {
+  margin: 0;
+  padding: 1em;
+  break-inside: avoid;
+
+  text-align: center;
+}
+
+figcaption {
+  font-style: italic;
+}
+
+*:has(+ figure.full-page) {
+  break-after: page;
+}
+
+figure.full-page {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+}
+
+img {
+  break-inside: avoid;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  img[epub|type*='illustration'] {
+    box-sizing: border-box;
+    opacity: 75%;
+
+    border-image-source: url(../imagestorn-edges.png);
+    border-image-width: 4px;
+    border-image-repeat: stretch;
+    border-image-slice: 20 fill;
+    border-image-outset: 10px;
+    filter: sepia(1) saturate(0.35) hue-rotate(-25deg) drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+  }
+
+  img[epub|type*='frontispiece'] {
+    filter: none;
+    border: none;
+  }
+}
+
+/* Blockquotes */
+
+blockquote {
+  margin: 1em var(--text-indent);
+  font-style: italic;
+  hanging-punctuation: first last;
+}
+
+blockquote em {
+  font-style: normal;
+}
+
+cite {
+  font-style: normal;
+}
+
+blockquote cite {
+  display: block;
+  font-style: italic;
+  text-align: right;
+}
+
+blockquote cite em {
+  font-style: normal;
+}
+
+/* Letters */
+
+[epub|type~='z3998:letter'] {
+  margin-inline: calc(4 * var(--text-indent));
+}
+
+@media (max-width: 55ch) {
+  [epub|type~='z3998:letter'] {
+    margin-inline: calc(2 * var(--text-indent));
+  }
+}
+
+[epub|type~='z3998:letter'] :is(header, footer) p {
+  text-indent: 0;
+  margin-block: 1em;
+}
+
+[epub|type~='z3998:letter'] footer {
+  margin-left: calc(2 * var(--text-indent));
+}
+
+/* Section page breaks */
+
+section:not([epub|type~='cover']):not([epub|type~='copyright-page']) {
+  page-break-before: right;
+  page-break-after: right;
+}
+
+section:is([epub|type~='part'], [epub|type~='chapter']) > h1 {
+  /* break-after: right; */
+  page-break-before: right;
+  page-break-after: right;
+}
+
+section:not([epub|type~='cover']) > *:first-child,
+section:is([epub|type~='part'], [epub|type~='chapter']) > p:first-of-type,
+section:is([epub|type~='part'], [epub|type~='chapter']) > p:first-of-type .dropcap {
+  page-break-before: right;
+}
+
+/* Cover */
+
+section[epub|type~='cover'] {
+  text-align: center;
+}
+
+section[epub|type~='cover'] img[role='doc-cover'] {
+  max-height: calc(100vh - 2em);
+}
+
+@supports (display: flex) {
+  section[epub|type~='aside'],
+  section[epub|type~='cover'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 2em);
+  }
+}
+
+/* Title Page */
+
+body:has(section[epub|type~='titlepage']) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+section[epub|type*='titlepage'],
+section[epub|type*='titlepage'] :is(p, h1, h2, h3) {
+  text-align: center;
+  text-indent: 0;
+  position: relative;
+  z-index: 1;
+}
+
+section[epub|type*='titlepage'] :is(p, h1, h2, h3) {
+  --letter-spacing: 0.9ch;
+
+  margin: 0;
+  padding-left: var(--letter-spacing);
+
+  font-family: var(--sans-serif);
+  font-weight: normal;
+  line-height: 1.4;
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
+}
+
+section[epub|type~='titlepage'] > figure {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+
+  position: relative;
+  padding: 2em 5em;
+  width: max-content;
+  max-width: 90vw;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+  margin-inline: auto;
+  font-size: 1em;
+}
+
+body[epub|type~='frontmatter']:has(> section[epub|type~='titlepage'])::before {
+  filter: invert() brightness(0.4);
+}
+
+section[epub|type~='titlepage'] > p {
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 85rem) {
+  section[epub|type~='titlepage'] {
+    font-size: 0.85em;
+  }
+}
+
+@media screen and (max-width: 55rem) {
+  section[epub|type~='titlepage'] {
+    font-size: 0.75em;
+  }
+}
+
+@media screen and (max-width: 30rem) {
+  section[epub|type~='titlepage'] {
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 25rem) {
+  section[epub|type~='titlepage'] {
+    font-size: 0.4em;
+  }
+}
+
+@supports (display: flex) {
+  section[epub|type~='titlepage'] figure {
+    margin-bottom: 0;
+  }
+
+  section[epub|type~='titlepage'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+section[epub|type~='titlepage'] img[epub|type~='z3998:decorative'] {
+  width: 6em;
+  margin-block: 1.5em;
+  filter: grayscale(0.5);
+}
+
+section[epub|type~='titlepage'] img[epub|type~='z3998:publisher-logo'] {
+  width: 9em;
+}
+
+section[epub|type~='titlepage'] [epub|type~='subtitle'] {
+  --letter-spacing: 1.2ch;
+
+  margin-bottom: 0.5em;
+
+  color: var(--theme-color-on-light);
+  font-family: var(--serif);
+  font-size: 3.5em;
+  text-shadow: 2px 2px 5px color-mix(in lch, currentColor, transparent 60%);
+}
+
+@media (prefers-color-scheme: light) {
+  section[epub|type~='titlepage'] > p {
+    filter: invert();
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  section[epub|type~='titlepage'] :is(h1, h3) {
+    filter: invert();
+  }
+
+  section[epub|type~='titlepage'] [epub|type~='subtitle'] {
+    color: var(--theme-color-on-light);
+  }
+
+  section[epub|type~='titlepage'] img[epub|type~='z3998:publisher-logo'] {
+    filter: invert();
+  }
+}
+
+section[epub|type~='titlepage'] h1 {
+  line-height: 1.1;
+}
+
+section[epub|type~='titlepage'] figure > h3:last-of-type {
+  font-size: 0.8em;
+  margin-top: 0.4em;
+  text-transform: lowercase;
+}
+
+/* Copyright */
+
+section[epub|type~='copyright-page'] {
+  display: flex;
+  max-width: 25em;
+  margin: auto;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: end;
+  padding-bottom: 3rlh;
+}
+
+section[epub|type~='copyright-page'] p {
+  font-style: italic;
+  line-height: 1.75;
+  text-indent: 0;
+  text-align: center;
+  margin-block: 0.5rlh;
+}
+
+/* Dedication */
+
+section[epub|type~='dedication'] {
+  text-align: center;
+}
+
+section[epub|type~='dedication'] > * {
+  display: inline-block;
+  margin: auto;
+  margin-top: 3em;
+  max-width: 80%;
+}
+
+@supports (display: flex) {
+  section[epub|type~='dedication'] {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(66vh - 3em);
+    padding-top: 3em;
+  }
+
+  section[epub|type~='dedication'] > * {
+    margin: 0;
+  }
+}
+
+/* Preface / Afterword */
+section[epub|type~='acknowledgments'] p,
+section[epub|type~='afterword'] p {
+  hanging-punctuation: first last;
+  text-indent: 0;
+  margin-block: 1em;
+}
+
+section[epub|type~='acknowledgments'] footer p {
+  text-align: right;
+}
+
+section[epub|type~='afterword'] h1 {
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+/* Half Title Page */
+
+@supports (display: flex) {
+  section[epub|type~='halftitlepage'] {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(66vh - 3em);
+    padding-top: 3em;
+  }
+}
+
+section[epub|type~='halftitlepage'] img {
+  width: 8em;
+}
+
+section[epub|type~='halftitlepage'] h1 {
+  font-size: 1rem;
+}
+
+/* Chapters */
+
+p.first-line-caps::first-line,
+section[epub|type~='acknowledgments'] footer p {
+  font-family: var(--sans-serif);
+  font-size: 0.9rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.75ch;
+  line-height: 1rlh;
+}
+
+p.first-line-caps:has(.dropcap)::first-line {
+  color: var(--theme-color);
+}

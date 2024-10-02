@@ -1,0 +1,165 @@
+<!-- BEFORE USE: Clean up by removing all comments ending in x-->
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-package-elem -->
+<package
+  xmlns="http://www.idpf.org/2007/opf"
+  unique-identifier="uuid"
+  version="3.0"
+  xml:lang="en-us"
+>
+  <!-- Use xmlns:[namespace] to add namespace attributes x-->
+  <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-pkg-metadata x-->
+  <metadata
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:opf="http://www.idpf.org/2007/opf"
+  >
+    <!-- dc:title   https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dctitle x-->
+    <!-- title-type https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-title-type x-->
+    <dc:title id="expanded-title">Myst: The Book of Ti’ana</dc:title>
+    <meta refines="#expanded-title" property="title-type">expanded</meta>
+
+    <dc:title id="series-title">Myst</dc:title>
+    <meta refines="#series-title" property="display-seq">1</meta>
+    <meta refines="#series-title" property="title-type">collection</meta>
+
+    <dc:title id="main-title">The Book of Ti’ana</dc:title>
+    <meta refines="#main-title" property="display-seq">2</meta>
+    <meta refines="#main-title" property="title-type">main</meta>
+
+    <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dccreator x-->
+    <dc:creator id="rand-miller">Rand Miller</dc:creator>
+    <meta refines="#rand-miller" property="display-seq">1</meta>
+    <meta refines="#rand-miller" property="role" scheme="marc:relators">aut</meta>
+    <meta refines="#rand-miller" property="file-as">Miller, Rand</meta>
+
+    <dc:creator id="david-wingrove">David Wingrove</dc:creator>
+    <meta refines="#david-wingrove" property="display-seq">2</meta>
+    <meta refines="#david-wingrove" property="role" scheme="marc:relators">aut</meta>
+    <meta refines="#david-wingrove" property="file-as">Wingrove, David</meta>
+
+    <dc:description>Ti’ana, known among humans as Anna, is the first woman from the outside world to enter the domain of the D’ni. This is her story of trust and betrayal, and her struggle against the evil schemes of Veovis, the architect of the destruction of D’ni, and all that she loves.</dc:description>
+
+    <!-- Though not required for epub 3, needed for thumbnail in Finder/iBooks x-->
+    <meta name="cover" content="cover.jpg" />
+
+    <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-belongs-to-collection x-->
+    <meta property="belongs-to-collection" id="myst-series">Myst</meta>
+    <meta refines="#myst-series" property="group-position">2</meta>
+    <meta refines="#myst-series" property="collection-type">series</meta>
+
+    <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dccontributor x-->
+    <dc:contributor id="illustrator">Tom Bowman</dc:contributor>
+    <meta refines="#illustrator" property="role" scheme="marc:relators">ill</meta>
+
+    <dc:publisher>Hyperion</dc:publisher>
+    <dc:date>1996-01-01T00:00:00Z</dc:date> <!-- Publication date x-->
+
+    <dc:identifier id="uuid">urn:uuid:2f9438f7-6ee7-4d4e-8bfe-e912b0dbc004</dc:identifier>
+    <dc:identifier>urn:isbn:9780786861606</dc:identifier>
+    <dc:identifier>urn:AMAZON:0786889209</dc:identifier>
+
+    <!-- dc:subject https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dcsubject x-->
+    <!-- BISAC Codes: https://www.bisg.org/complete-bisac-subject-headings-list x-->
+    <dc:subject id="subject">FICTION / Fantasy / Epic</dc:subject>
+    <meta refines="#subject" property="authority">BISAC</meta>
+    <meta refines="#subject" property="term">FIC009020</meta>
+
+    <dc:language>en-US</dc:language>
+
+    <meta property="dcterms:modified">2024-10-01T14:33:16-07:00</meta> <!-- Update when you make changes; use "Print Timestamp" x-->
+  </metadata>
+
+  <!--
+  IMPORTANT! The manifest MUST list all files.
+
+  If you forget an asset (like an image), it won’t load. This includes assets
+  linked in CSS (background images, etc).
+
+  https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-pkg-manifest
+  x-->
+  <manifest>
+    <!-- MIME Types: https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-core-media-types x-->
+
+    <!-- Supplementary -->
+    <item id="css" href="styles/book.css" media-type="text/css" />
+    <item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
+    <!-- DEPRECATED: <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" /> x-->
+
+    <!-- Fonts -->
+    <!-- font/ttf; font/otf; font/woff; font/woff2 x-->
+    <item id="centaur.otf" href="fonts/Centaur.otf" media-type="font/otf" />
+    <item id="centaur-italic.otf" href="fonts/Centaur-italic.otf" media-type="font/otf" />
+    <item id="din-alternate-bold.ttf" href="fonts/DIN-Alternate-bold.ttf" media-type="font/ttf" />
+
+    <!-- Images -->
+    <!-- image/jpeg; image/png; image/svg+xml; image/webp x-->
+    <item id="cover.jpg"           href="images/cover.jpg"           media-type="image/jpeg" properties="cover-image" />
+    <item id="illustration-01.jpg" href="images/illustration-01.jpg" media-type="image/jpeg" />
+    <item id="illustration-02.jpg" href="images/illustration-02.jpg" media-type="image/jpeg" />
+
+    <!-- Pages -->
+    <!--
+    You may want to prefix pages with a number to maintain page order, e.g.
+
+      text/00-cover.xhtml
+      text/01-titlepage.xhtml
+      text/02-chapter-1.xhtml
+      text/03-chapter-2.xhtml
+
+    x-->
+    <!-- Cover -->
+    <item id="cover"             href="text/cover.xhtml"               media-type="application/xhtml+xml" />
+
+    <!-- Frontmatter -->
+    <item id="titlepage"         href="text/titlepage.xhtml"           media-type="application/xhtml+xml" />
+    <item id="copyright"         href="text/copyright.xhtml"           media-type="application/xhtml+xml" />
+    <item id="dedication"        href="text/dedication.xhtml"          media-type="application/xhtml+xml" />
+    <item id="acknowledgments"   href="text/acknowledgments.xhtml"     media-type="application/xhtml+xml" />
+    <item id="halftitlepage"     href="text/halftitlepage.xhtml"       media-type="application/xhtml+xml" />
+
+    <!-- Bodymatter -->
+
+    <item id="prologue"          href="text/prologue.xhtml"            media-type="application/xhtml+xml" />
+
+    <item id="part-01"           href="text/part-01.xhtml"             media-type="application/xhtml+xml" />
+    <item id="chapter-01"        href="text/chapter-01.xhtml"          media-type="application/xhtml+xml" />
+    <item id="chapter-02"        href="text/chapter-02.xhtml"          media-type="application/xhtml+xml" />
+    <item id="chapter-03"        href="text/chapter-03.xhtml"          media-type="application/xhtml+xml" />
+
+    <item id="part-02"           href="text/part-02.xhtml"             media-type="application/xhtml+xml" />
+    <item id="chapter-04"        href="text/chapter-04.xhtml"          media-type="application/xhtml+xml" />
+    <item id="chapter-05"        href="text/chapter-05.xhtml"          media-type="application/xhtml+xml" />
+    <item id="chapter-06"        href="text/chapter-06.xhtml"          media-type="application/xhtml+xml" />
+
+    <item id="epilogue"          href="text/epilogue.xhtml"            media-type="application/xhtml+xml" />
+
+    <!-- Backmatter -->
+    <item id="about-the-authors" href="text/about-the-authors.xhtml"   media-type="application/xhtml+xml" />
+    <item id="loi"               href="text/loi.xhtml"                 media-type="application/xhtml+xml" />
+  </manifest>
+
+  <!--
+  Lists the reading order of pages
+  https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-pkg-spine
+  x-->
+  <spine> <!-- DEPRECATED: `toc="ncx"` x-->
+    <itemref idref="cover" />
+    <itemref idref="toc" linear="no" />
+    <itemref idref="titlepage" />
+    <itemref idref="copyright" />
+    <itemref idref="dedication" />
+    <itemref idref="acknowledgments" />
+    <itemref idref="halftitlepage" />
+    <itemref idref="part-1" />
+    <itemref idref="part-2" />
+    <itemref idref="part-3" />
+    <itemref idref="part-4" />
+    <itemref idref="part-5" />
+    <itemref idref="part-6" />
+    <itemref idref="part-7" />
+    <itemref idref="epilogue" />
+    <itemref idref="about-the-authors" />
+    <itemref idref="loi" />
+  </spine>
+</package>

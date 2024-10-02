@@ -1,0 +1,41 @@
+<!--
+All text files are `*.xhtml`. This allows the use of `epub:` namespacing
+
+Chapters and Parts should be suffixed with a zero-padded digit, e.g. `chapter-01.xhtml`
+-->
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+The html tag can define multiple xml namespaces, e.g. `xmlns:[namespace]`
+`epub:prefix` is a comma separated list of prefixes used in `epub:type` attributes
+-->
+<html
+  xml:lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:epub="http://www.idpf.org/2007/ops"
+  epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/"
+>
+  <head>
+    <title>
+      <!-- Should match the first heading in the file -->
+      Chapter 1: A Story Begins
+    </title>
+
+    <link href="../styles/book.css" rel="stylesheet" type="text/css" />
+  </head>
+  <!--
+  <body> includes `epub:type` semantic metadata
+    standard vocab: https://www.w3.org/TR/epub-ssv-11/
+    z3998 vocab:    https://www.daisy.org/z3998/2012/vocab/structure/
+    se vocab:       https://standardebooks.org/vocab/1.0
+  -->
+  <body epub:type="bodymatter z3998:fiction" class="ibooks-dark-theme-use-custom-text-color">
+    <!--
+    Each <section> has an ID in kebab-case.
+    The first <section> ID should be identical to the filename
+    -->
+    <section id="standard-template" role="doc-chapter" epub:type="chapter">
+      <h1>Chapter 1: A Story Begins</h1>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores dolor impedit reiciendis explicabo ullam sit magnam eos minima repudiandae quibusdam incidunt ipsum placeat necessitatibus neque, repellat illo, et in laboriosam!</p>
+    </section>
+  </body>
+</html>

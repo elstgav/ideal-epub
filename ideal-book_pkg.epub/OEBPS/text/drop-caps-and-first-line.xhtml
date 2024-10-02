@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/" xml:lang="en-US">
+  <head>
+    <title>Drop Caps & First Line</title>
+    <link href="../styles/book.css" rel="stylesheet" type="text/css" />
+    <style>
+      :root {
+        --theme-color: green;
+      }
+
+      p.first-line-caps::first-line {
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        font-variant-caps: all-small-caps;
+        letter-spacing: 0.75ch;
+        line-height: 1rlh;
+      }
+
+      p.first-line-caps:has(.dropcap)::first-line {
+        color: var(--theme-color);
+      }
+
+      p.first-line-caps::first-line {
+        color: var(--theme-color);
+      }
+
+      /* Drop Caps */
+
+      @supports not ((initial-letter: 2) or (-webkit-initial-letter: 2)) {
+        /*
+        Lack of support for initial-letter means a lot of magic numbers 😕
+        These will often break as font-family, line-height, etc is changed by the e-reader.
+        */
+        .dropcap {
+          float: left;
+
+          color: var(--theme-color);
+          font-family: inherit;
+          font-variant-caps: normal;
+          font-size: 1.75rlh;
+          line-height: 1;
+
+          margin-top: calc(0.8rcap - 0.8rex - 0.25rem);
+          margin-right: 0.25rem;
+          margin-bottom: -0.75rem;
+        }
+      }
+
+      @supports (initial-letter: 2) or (-webkit-initial-letter: 2) {
+        p:has(> .dropcap)::first-letter {
+          initial-letter: 2;
+          -webkit-initial-letter: 2;
+
+          margin-top: calc(1cap - 1.1ex);
+          margin-right: 0.25rem;
+
+          color: var(--theme-color);
+          font-family: var(--serif);
+          font-variant-caps: normal;
+          letter-spacing: normal;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .dropcap,
+        p:has(> .dropcap)::first-letter,
+        p.first-line-caps:has(.dropcap)::first-line {
+          color: var(--theme-color);
+        }
+      }
+    </style>
+  </head>
+  <body epub:type="bodymatter z3998:fiction" class="ibooks-dark-theme-use-custom-text-color">
+    <section id="drop-caps-and-first-line" epub:type="epilogue chapter">
+      <!--
+      Instead of relying on `::first-letter` alone; we use a manual wrapper here
+      to style these. This allows you to `inherit` the base font face (if
+      customizing the `::first-line` font face), and overcome custom font issues
+      in Safari when using `initial-letter`.
+      -->
+      <p class="first-line-caps"><span class="dropcap">T</span>he sun was edging above the mountains far to the east as the figure of a woman emerged from the lip of the volcano, cradling a sleeping child. The desert floor was still in deep shadow.</p>
+
+      <p class="first-line-caps">
+        <!-- Remember dropcaps should include hanging punctuation -->
+        <span class="dropcap">…“W</span>here is he?”
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/, ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0" xml:lang="en-US">
+  <head>
+    <title>Table of Contents</title>
+  </head>
+  <body epub:type="frontmatter">
+    <!--
+      NOTE: The TOC.xhtml is purely structural info for e-readers; so you can omit any presentation/styling
+    -->
+
+    <!--
+    The `toc` `<nav/>` element defines the primary navigational hierarchy. It
+    conceptually corresponds to a table of contents in a printed work (i.e., it
+    provides navigation to the major structural sections of the publication).
+
+    https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-nav-toc
+    -->
+    <nav epub:type="toc" role="doc-toc">
+      <ol>
+        <li><a href="text/cover.xhtml">Cover</a></li>
+        <li><a href="text/acknowledgments.xhtml">Acknowledgments</a></li>
+
+        <li>
+          <a href="text/halftitlepage.xhtml">The Fellowship of the Ring</a>
+
+          <!-- I prefer to nest bodymatter -->
+          <ol>
+            <li><a href="text/part-1.xhtml">Part One: Echoes in the Rock</a></li>
+            <li><a href="text/part-2.xhtml">Part Two: Of Stone and Dust and Ashes</a></li>
+            <li><a href="text/part-3.xhtml">Part Three: Fault Lines</a></li>
+            <li><a href="text/part-4.xhtml">Part Four: Gemedet</a></li>
+            <li><a href="text/part-5.xhtml">Part Five: The Philosopher</a></li>
+            <li><a href="text/part-6.xhtml">Part Six: The Ink in the Well</a></li>
+            <li><a href="text/part-7.xhtml">Part Seven: Last Days</a></li>
+            <li><a href="text/epilogue.xhtml">Epilogue</a></li>
+          </ol>
+        </li>
+
+        <li><a href="text/about-the-authors.xhtml">About the Authors</a></li>
+        <li><a href="text/loi.xhtml">List of Illustrations</a></li>
+      </ol>
+    </nav>
+
+    <!--
+    Identifies fundamental structural components in the content to enable
+    reading systems to provide the user efficient access to them (e.g., through
+    a dedicated button in the user interface)
+
+    https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-nav-landmarks
+    https://help.apple.com/itc/booksassetguide/#/itc0f175a5b9:~:text=%3C/nav%3E-,Landmarks,-The%20landmarks%20structure
+    -->
+    <nav epub:type="landmarks">
+      <ol>
+        <!--
+        Tells iBooks where to start; otherwise falls back to other spine items
+        https://help.apple.com/itc/booksassetguide/#/itc0f175a5b9:~:text=Apple%20Books%20opens%20to%20the%20first%20landmark%20item%20that%20contains%20the%20epub%3Atype%20value%20of%20%22ibooks%3Areader%2Dstart%2Dpage%22.%20If%20that%20value%20is%20not%20specified%20in%20the%20landmarks%20navigation%20structure%2C%20Apple%20Books%20opens%20to%20the%20first%20spine%20item%20that%20contains%20one%20of%20the%20following%20epub%3Atype%20landmarks%20values%3A
+        -->
+        <li><a epub:type="ibooks:reader-start-page" href="text/cover.xhtml">Cover</a></li>
+
+        <li><a epub:type="cover" href="text/cover.xhtml">Cover</a></li>
+        <li><a epub:type="titlepage" href="text/titlepage.xhtml">Title Page</a></li>
+        <li><a epub:type="toc" href="#toc">Table of Contents</a></li>
+        <li><a epub:type="bodymatter" href="text/part-1.xhtml">Start</a></li>
+        <li><a epub:type="loi" href="text/loi.xhtml">List of Illustrations</a></li>
+      </ol>
+    </nav>
+
+    <!--
+    Provides navigation to static page boundaries in the content. These
+    boundaries may correspond to a statically paginated source such as print.
+    https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-nav-pagelist
+    https://help.apple.com/itc/booksassetguide/#/itc0f175a5b9:~:text=Page%20Mapping%20Using%20page%2Dlist
+    -->
+    <nav epub:type="page-list">
+      <ol>
+        <li><a href="text/cover.xhtml#cover-page"></a></li>
+        <li><a href="text/titlepage.xhtml#titlepage">i</a></li>
+        <li><a href="text/copyright.xhtml#copyright">ii</a></li>
+        <li><a href="text/dedication.xhtml#dedication">iii</a></li>
+        <li><a href="text/acknowledgments.xhtml#acknowledgments">iv</a></li>
+        <li><a href="text/halftitlepage.xhtml#halftitlepage">v</a></li>
+
+        <!--
+        Page markers can be marked up within files like so:
+
+        <span id="page-02" epub:type="pagebreak" role="doc-pagebreak" title="2"/>
+        -->
+        <li><a href="text/chapter-1.xhtml#page-01">1</a></li>
+        <li><a href="text/chapter-1.xhtml#page-02">2</a></li>
+        <li><a href="text/chapter-1.xhtml#page-03">3</a></li>
+      </ol>
+    </nav>
+  </body>
+</html>
