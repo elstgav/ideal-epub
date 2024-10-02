@@ -102,10 +102,10 @@
     <!--
     You may want to prefix pages with a number to maintain page order, e.g.
 
-      text/00-cover.xhtml
-      text/01-titlepage.xhtml
-      text/02-chapter-1.xhtml
-      text/03-chapter-2.xhtml
+      text/00_cover.xhtml
+      text/01_titlepage.xhtml
+      text/02_chapter-1.xhtml
+      text/03_chapter-2.xhtml
 
     x-->
     <!-- Cover -->
