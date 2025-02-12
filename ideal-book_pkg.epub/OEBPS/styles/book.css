@@ -322,7 +322,6 @@ section[epub|type~='cover'] img[role='doc-cover'] {
 }
 
 @supports (display: flex) {
-  section[epub|type~='aside'],
   section[epub|type~='cover'] {
     display: flex;
     align-items: center;
