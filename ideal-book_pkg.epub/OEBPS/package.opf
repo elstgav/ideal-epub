@@ -1,7 +1,7 @@
 <!-- BEFORE USE: Clean up by removing all comments ending in x-->
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-package-elem -->
+<!-- https://www.w3.org/TR/epub-33/#sec-package-elem -->
 <package
   xmlns="http://www.idpf.org/2007/opf"
   unique-identifier="uuid"
@@ -9,13 +9,13 @@
   xml:lang="en-us"
 >
   <!-- Use xmlns:[namespace] to add namespace attributes x-->
-  <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-pkg-metadata x-->
+  <!-- https://www.w3.org/TR/epub-33/#sec-pkg-metadata x-->
   <metadata
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:opf="http://www.idpf.org/2007/opf"
   >
-    <!-- dc:title   https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dctitle x-->
-    <!-- title-type https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-title-type x-->
+    <!-- dc:title   https://www.w3.org/TR/epub-33/#sec-opf-dctitle x-->
+    <!-- title-type https://www.w3.org/TR/epub-33/#sec-title-type x-->
     <dc:title id="expanded-title">Myst: The Book of Ti’ana</dc:title>
     <meta refines="#expanded-title" property="title-type">expanded</meta>
 
@@ -27,7 +27,7 @@
     <meta refines="#main-title" property="display-seq">2</meta>
     <meta refines="#main-title" property="title-type">main</meta>
 
-    <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dccreator x-->
+    <!-- https://www.w3.org/TR/epub-33/#sec-opf-dccreator x-->
     <dc:creator id="rand-miller">Rand Miller</dc:creator>
     <meta refines="#rand-miller" property="display-seq">1</meta>
     <meta refines="#rand-miller" property="role" scheme="marc:relators">aut</meta>
@@ -43,12 +43,12 @@
     <!-- Though not required for epub 3, needed for thumbnail in Finder/iBooks x-->
     <meta name="cover" content="cover.jpg" />
 
-    <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-belongs-to-collection x-->
+    <!-- https://www.w3.org/TR/epub-33/#sec-belongs-to-collection x-->
     <meta property="belongs-to-collection" id="myst-series">Myst</meta>
     <meta refines="#myst-series" property="group-position">2</meta>
     <meta refines="#myst-series" property="collection-type">series</meta>
 
-    <!-- https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dccontributor x-->
+    <!-- https://www.w3.org/TR/epub-33/#sec-opf-dccontributor x-->
     <dc:contributor id="illustrator">Tom Bowman</dc:contributor>
     <meta refines="#illustrator" property="role" scheme="marc:relators">ill</meta>
 
@@ -59,7 +59,7 @@
     <dc:identifier>urn:isbn:9780786861606</dc:identifier>
     <dc:identifier>urn:AMAZON:0786889209</dc:identifier>
 
-    <!-- dc:subject https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-opf-dcsubject x-->
+    <!-- dc:subject https://www.w3.org/TR/epub-33/#sec-opf-dcsubject x-->
     <!-- BISAC Codes: https://www.bisg.org/complete-bisac-subject-headings-list x-->
     <dc:subject id="subject">FICTION / Fantasy / Epic</dc:subject>
     <meta refines="#subject" property="authority">BISAC</meta>
@@ -76,10 +76,10 @@
   If you forget an asset (like an image), it won’t load. This includes assets
   linked in CSS (background images, etc).
 
-  https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-pkg-manifest
+  https://www.w3.org/TR/epub-33/#sec-pkg-manifest
   x-->
   <manifest>
-    <!-- MIME Types: https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-core-media-types x-->
+    <!-- MIME Types: https://www.w3.org/TR/epub-33/#sec-core-media-types x-->
 
     <!-- Supplementary -->
     <item id="css" href="styles/book.css" media-type="text/css" />
@@ -141,7 +141,7 @@
 
   <!--
   Lists the reading order of pages
-  https://www.w3.org/TR/2023/REC-epub-33-20230525/#sec-pkg-spine
+  https://www.w3.org/TR/epub-33/#sec-pkg-spine
   x-->
   <spine> <!-- DEPRECATED: `toc="ncx"` x-->
     <itemref idref="cover" />
