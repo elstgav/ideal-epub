@@ -13,29 +13,22 @@ TIPS
 */
 
 @font-face {
-  font-family: 'Centaur';
+  font-family: 'EB Garamond';
   font-style: normal;
   font-weight: normal;
-  src: local(Centaur), url(../fonts/Centaur.otf);
+  src: local('EB Garamond'), local(EBGaramond08-Regular), url(../fonts/EBGaramond08-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'Centaur';
+  font-family: 'EB Garamond';
   font-style: italic;
   font-weight: normal;
-  src: local(Centaur italic), local(Centaur-italic), url(../fonts/Centaur-italic.otf);
-}
-
-@font-face {
-  font-family: 'DIN Alternate';
-  font-style: normal;
-  font-weight: normal;
-  src: local(DIN Alternate Bold), local(DINAlternate-Bold), url(../fonts/DIN-Alternate-bold.ttf);
+  src: local('EB Garamond Italic'), local(EBGaramond08-Italic), url(../fonts/EBGaramond08-Italic.ttf);
 }
 
 :root {
-  --serif: Centaur, serif;
-  --sans-serif: DIN Alternate, SF Compact, Helvetica Neue, Helvetica, sans-serif;
+  --serif: 'EB Garamond', serif;
+  --sans-serif: SF Compact, Helvetica Neue, Helvetica, sans-serif;
   --theme-color-on-light: hsl(132deg 16% 42%);
   --theme-color-on-dark: hsl(132deg 20% 44%);
   --theme-color: var(--theme-color-on-light);

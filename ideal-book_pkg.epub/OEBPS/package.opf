@@ -88,15 +88,14 @@
 
     <!-- Fonts -->
     <!-- font/ttf; font/otf; font/woff; font/woff2 x-->
-    <item id="centaur.otf"            href="fonts/Centaur.otf"            media-type="font/otf" />
-    <item id="centaur-italic.otf"     href="fonts/Centaur-italic.otf"     media-type="font/otf" />
-    <item id="din-alternate-bold.ttf" href="fonts/DIN-Alternate-bold.ttf" media-type="font/ttf" />
+    <item id="EBGaramond-08-Regular.ttf" href="fonts/EBGaramond-08-Regular.ttf" media-type="font/ttf" />
+    <item id="EBGaramond-08-Italic.ttf"  href="fonts/EBGaramond-08-Italic.ttf"  media-type="font/ttf" />
 
     <!-- Images -->
     <!-- image/jpeg; image/png; image/svg+xml; image/webp x-->
     <item id="cover.jpg"           href="images/cover.jpg"           media-type="image/jpeg" properties="cover-image" />
-    <item id="illustration-01.jpg" href="images/illustration-01.jpg" media-type="image/jpeg" />
-    <item id="illustration-02.jpg" href="images/illustration-02.jpg" media-type="image/jpeg" />
+    <item id="illustration-1.png" href="images/illustration-1.png" media-type="image/png" />
+    <item id="illustration-2.png" href="images/illustration-2.png" media-type="image/png" />
 
     <!-- Pages -->
     <!--
